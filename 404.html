@@ -32,19 +32,44 @@
   </script>
   <link rel="stylesheet" href="/styles/styles.css">
   <style>
-    main.error {
-      min-height: calc(100vh - var(--nav-height));
-      display: flex;
-      align-items: center;
+   body {
+      margin: 0;
+      font-family: 'Comic Sans MS', sans-serif;
+      background: linear-gradient(135deg, #f06, #ffcc00);
+      color: #333;
+      text-align: center;
+      animation: background-shift 10s infinite;
     }
 
-    main.error .error-number {
-      width: 100%;
+    @keyframes background-shift {
+      0% { background: linear-gradient(135deg, #f06, #ffcc00); }
+      50% { background: linear-gradient(135deg, #00c3ff, #ffcc00); }
+      100% { background: linear-gradient(135deg, #f06, #ffcc00); }
     }
 
-    main.error .error-number text {
-      font-family: monospace;
+    .container {
+      padding: 50px;
+      max-width: 800px;
+      margin: auto;
     }
+
+    .title {
+      font-size: 8rem;
+      color: #fff;
+      text-shadow: 5px 5px 0 #000;
+      animation: wiggle 1s ease-in-out infinite alternate;
+    }
+
+    @keyframes wiggle {
+      from { transform: scale(1.3); }
+      to { transform: scale(1); }
+    }
+
+    .message {
+      font-size: 1.5rem;
+      margin: 20px 0;
+    }
+
   </style>
   <link rel="stylesheet" href="/styles/lazy-styles.css">
 </head>
@@ -53,13 +78,10 @@
   <header></header>
   <main class="error">
     <div class="section">
-      <svg viewBox="1 0 38 18" class="error-number">
-        <text x="0" y="17">404</text>
-      </svg>
-      <h2 class="error-message">Page Not Found</h2>
-      <p class="button-container">
-        <a href="/" class="button secondary error-button-home">Go home</a>
-      </p>
+      <div class="container">
+        <h1 class="title">404</h1>
+        <p class="message">Oops! You’ve wandered off the map. 🚀</p>
+      </div>
     </div>
   </main>
   <footer></footer>
