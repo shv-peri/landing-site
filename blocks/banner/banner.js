@@ -6,13 +6,7 @@ export default function decorate(block) {
   const pic = block.querySelector('picture > img');
   if (pic) {
     const picture = pic.closest('picture');
-    const optimizedPicture = createOptimizedPicture(
-      pic.src,    
-      pic.alt,    
-      false,       
-      [{ width: '750' }] 
-    );
-
+    const optimizedPicture = createOptimizedPicture(pic.src,pic.alt,false,[{ width: '750' }]);
     picture.replaceWith(optimizedPicture);
   }
   // Process other elements in the block
