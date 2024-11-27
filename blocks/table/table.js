@@ -49,12 +49,9 @@ async function createTableRow(table, row, i) {
   table.append(tr);
 }
 
-async function createSelectMap(jsonURL) {
-  const optionsMap = new Map();
-  // const { pathname } = new URL(jsonURL);
-
-  // const resp = await fetch(pathname);
-  optionsMap.set('allCountries', allCountries);
+async function createSelectMap() {
+  const optionsMap = new Map();;
+  optionsMap.set('allCountries', "default");
   optionsMap.set('asia', asia);
   optionsMap.set('europe', europe);
   optionsMap.set('africa', africa);
@@ -105,10 +102,8 @@ async function updateTable(jsonURL, parentDiv, region, limit, offset, selectChan
   tableE.replaceWith(table);
 }
 
-const limit = 20; // Number of records per page
-const offset = 0; // Starting index for records
 
-function createPaginationControls(parentDiv, jsonURL, region) {
+function createPaginationControls(parentDiv, jsonURL, region, limit, offset) {
   const paginationDiv = document.createElement('div');
   paginationDiv.classList.add('pagination-controls');
 
@@ -136,15 +131,17 @@ function createPaginationControls(parentDiv, jsonURL, region) {
 }
 
 export default async function decorate(block) {
+  const limit = 20; // Number of records per page
+  let offset = 0; // Starting index for records
   const countriesLink = block.querySelector('a[href$=".json"]');
   const parentDiv = document.createElement('div');
   parentDiv.classList.add('countries-block');
 
   if (countriesLink) {
     const jsonURL = countriesLink.href;
-    const selectMap = await createSelectMap(jsonURL);
+    const selectMap = await createSelectMap();
     const table = await createTable(jsonURL, null, limit, offset);
-    const pagination = createPaginationControls(parentDiv, jsonURL, null);
+    const pagination = createPaginationControls(parentDiv, jsonURL, null, limit,offset);
 
     parentDiv.append(selectMap, table, pagination);
     countriesLink.replaceWith(parentDiv);
