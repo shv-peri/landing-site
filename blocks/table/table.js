@@ -37,23 +37,23 @@ async function createTableRow(table, row, i) {
   const tr = document.createElement('tr');
   const snoCell = document.createElement('td');
   snoCell.appendChild(document.createTextNode(i));
-  const country = document.createElement('td');
-  country.appendChild(document.createTextNode(row.Country));
-  const capital = document.createElement('td');
-  capital.appendChild(document.createTextNode(row.Capital));
-  const continent = document.createElement('td');
-  continent.appendChild(document.createTextNode(row.Continent));
-  const currency = document.createElement('td');
-  currency.appendChild(document.createTextNode(row.Currency));
-  tr.append(snoCell, country, capital, continent, currency);
+  const countryCell = document.createElement('td');
+  countryCell.appendChild(document.createTextNode(row.Country));
+  const capitalCell = document.createElement('td');
+  capitalCell.appendChild(document.createTextNode(row.Capital));
+  const continentCell = document.createElement('td');
+  continentCell.appendChild(document.createTextNode(row.Continent));
+  const currencyCell = document.createElement('td');
+  currencyCell.appendChild(document.createTextNode(row.Currency));
+  tr.append(snoCell, countryCell, capitalCell, continentCell, currencyCell);
   table.append(tr);
 }
 
 async function createSelectMap(jsonURL) {
   const optionsMap = new Map();
-  const { pathname } = new URL(jsonURL);
+  // const { pathname } = new URL(jsonURL);
 
-  const resp = await fetch(pathname);
+  // const resp = await fetch(pathname);
   optionsMap.set('allCountries', allCountries);
   optionsMap.set('asia', asia);
   optionsMap.set('europe', europe);
@@ -77,9 +77,6 @@ async function createSelectMap(jsonURL) {
   div.append(select);
   return div;
 }
-
-const limit = 20; // Number of records per page
-let offset = 0; // Starting index for records
 
 async function createTable(jsonURL, val, limit, offset, selectChange) {
   let pathname;
@@ -107,6 +104,9 @@ async function updateTable(jsonURL, parentDiv, region, limit, offset, selectChan
   const table = await createTable(jsonURL, region, limit, offset, selectChange);
   tableE.replaceWith(table);
 }
+
+const limit = 20; // Number of records per page
+const offset = 0; // Starting index for records
 
 function createPaginationControls(parentDiv, jsonURL, region) {
   const paginationDiv = document.createElement('div');
