@@ -1,4 +1,4 @@
-import { createOptimizedPicture, fetchPlaceholders, getMetadata } from '../../scripts/aem.js';
+import { createOptimizedPicture } from '../../scripts/aem.js';
 
 export default async function decorate(block) {
   block.classList.add('banner-block');
@@ -14,7 +14,4 @@ export default async function decorate(block) {
   textContent.forEach((content) => {
     content.classList.add('banner-text');
   });
-
-  const placeholders = await fetchPlaceholders('fr'); 
-  console.log("placeholder", placeholders);
 }
