@@ -3,18 +3,11 @@ import { fetchPlaceholders, getMetadata } from '../../scripts/aem.js';
 const placeholders = await fetchPlaceholders(getMetadata('locale'));
 
 const {
-  allCountries,
   currency,
   capital,
   countries: countriesPlaceholder,
   sno,
-  africa,
-  america,
-  asia,
-  australia,
   continent,
-  ocenia,
-  europe,
 } = placeholders;
 
 async function createTableHeader(table) {
@@ -68,12 +61,11 @@ async function createTableRow(table, row, i) {
     option.value = key;
     select.append(option);
   });
-
   const div = document.createElement('div');
   div.classList.add('region-select');
   div.append(select);
   return div;
-}*/
+} */
 
 async function createTable(jsonURL, val, limit, offset, selectChange) {
   let pathname;
