@@ -1,6 +1,6 @@
 import { createOptimizedPicture } from '../../scripts/aem.js';
 
-export default function decorate(block) {
+export default async function decorate(block) {
   block.classList.add('banner-block');
 
   const pic = block.querySelector('picture > img');
