@@ -49,7 +49,7 @@ async function createTableRow(table, row, i) {
   table.append(tr);
 }
 
-async function createSelectMap() {
+/* async function createSelectMap() {
   const optionsMap = new Map();
   optionsMap.set('default', allCountries);
   optionsMap.set('asia', asia);
@@ -73,7 +73,7 @@ async function createSelectMap() {
   div.classList.add('region-select');
   div.append(select);
   return div;
-}
+}*/
 
 async function createTable(jsonURL, val, limit, offset, selectChange) {
   let pathname;
@@ -104,7 +104,6 @@ async function updateTable(jsonURL, parentDiv, region, limit, offset, selectChan
 
 const limit = 20; // Number of records per page
 let offset = 0; // Starting index for records
-
 
 function createPaginationControls(parentDiv, jsonURL, region) {
   const paginationDiv = document.createElement('div');
