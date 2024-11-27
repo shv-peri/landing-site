@@ -50,8 +50,8 @@ async function createTableRow(table, row, i) {
 }
 
 async function createSelectMap() {
-  const optionsMap = new Map();;
-  optionsMap.set('allCountries', "default");
+  const optionsMap = new Map();
+  optionsMap.set('default', allCountries);
   optionsMap.set('asia', asia);
   optionsMap.set('europe', europe);
   optionsMap.set('africa', africa);
@@ -102,11 +102,13 @@ async function updateTable(jsonURL, parentDiv, region, limit, offset, selectChan
   tableE.replaceWith(table);
 }
 
+const limit = 20; // Number of records per page
+let offset = 0; // Starting index for records
 
-function createPaginationControls(parentDiv, jsonURL, region, limit, offset) {
+
+function createPaginationControls(parentDiv, jsonURL, region) {
   const paginationDiv = document.createElement('div');
   paginationDiv.classList.add('pagination-controls');
-
   const prevButton = document.createElement('button');
   prevButton.textContent = 'Previous';
   prevButton.disabled = offset === 0; // Disable "Previous" button on the first page
@@ -131,19 +133,17 @@ function createPaginationControls(parentDiv, jsonURL, region, limit, offset) {
 }
 
 export default async function decorate(block) {
-  const limit = 20; // Number of records per page
-  let offset = 0; // Starting index for records
   const countriesLink = block.querySelector('a[href$=".json"]');
   const parentDiv = document.createElement('div');
   parentDiv.classList.add('countries-block');
 
   if (countriesLink) {
     const jsonURL = countriesLink.href;
-    const selectMap = await createSelectMap();
+    // const selectMap = await createSelectMap();
     const table = await createTable(jsonURL, null, limit, offset);
-    const pagination = createPaginationControls(parentDiv, jsonURL, null, limit,offset);
+    const pagination = createPaginationControls(parentDiv, jsonURL, null);
 
-    parentDiv.append(selectMap, table, pagination);
+    parentDiv.append(table, pagination);
     countriesLink.replaceWith(parentDiv);
 
     const dropdown = document.getElementById('region');
