@@ -2,8 +2,8 @@
 Your project's description...
 
 ## Environments
-- Preview: https://main--{repo}--{owner}.aem.page/
-- Live: https://main--{repo}--{owner}.aem.live/
+- Preview: https://develop--landing-site--shv-peri.aem.page/
+- Live: https://main--landing-site--shv-peri.aem.page/
 
 ## Installation
 
